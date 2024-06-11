@@ -94,7 +94,7 @@
   font-weight: 500;
 }
 
-.update__button:hover {
+.update_button:hover {
   background-color: #fafafa;
 }
 
@@ -143,7 +143,7 @@
   text-align: left;
 }
 
-.job__title {
+.job-title {
   display: flex;
   align-items: center;
   font-family: "Noto Sans", sans-serif;
@@ -259,7 +259,7 @@
   font-weight: 400;
 }
 
-.close__button {
+.close-button {
   background: none;
   border: none;
   font-size: 20px;
@@ -289,6 +289,13 @@
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.uploaded__img .uploaded-image__size {
+  margin-top: 0px;
+  color: #525252;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .uploaded__img__info {
@@ -626,7 +633,7 @@
     display: none;
   }
 
-  .upload__content__wrapper {
+  .upload-content-wrapper {
     width: 343px;
     height: 458px;
   }

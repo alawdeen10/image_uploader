@@ -21,7 +21,7 @@ const UploadedImage = ({
       <div className="uploaded__img__info">
         <div className="uploaded__img">
           <p className="uploaded__image__name">{image.name}</p>
-          <p className="uploaded__image__size">
+          <p className="uploaded-image__size">
             {(image.size / 1024).toFixed(2)} KB
           </p>
         </div>

@@ -92,7 +92,7 @@ const ProfileCard = () => {
       setProfileImage(uploadedImages[selectedImageIndex].src);
       setUploadWindowOpen(false);
       setShowSuccessNotification(true);
-      setTimeout(() => setShowSuccessNotification(false), 3000);
+      setTimeout(() => setShowSuccessNotification(false), 2000);
     }
   };
 
@@ -113,7 +113,7 @@ const ProfileCard = () => {
           <div className="content__info">
             <p className="username">@kingjack</p>
             <p className="dot">•</p>
-            <p className="job__title">Senior Product Designer at</p>
+            <p className="job-title">Senior Product Designer at</p>
             <div className="work">
               <p className="work__place">
                 <a
@@ -128,7 +128,7 @@ const ProfileCard = () => {
               <p>
                 <span className="special__dot">•</span>
               </p>
-              <p className="job__title">He/Him</p>
+              <p className="job-title">He/Him</p>
             </div>
           </div>
         </div>
