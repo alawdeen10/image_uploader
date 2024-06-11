@@ -601,7 +601,7 @@
 
   .update__button {
     top: 160px;
-    right: -5px;
+    right: 5px;
     padding: 8px 16px;
     font-size: 14px;
   }
