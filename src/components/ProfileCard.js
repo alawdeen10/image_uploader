@@ -13,6 +13,7 @@ import CropWindow from "./CropWindow";
 import Notification from "./Notification";
 
 const MAX_UPLOADS = 5;
+const MAX_FILE_SIZE_MB = 5;
 
 const ProfileCard = () => {
   const [isUploadWindowOpen, setUploadWindowOpen] = useState(false);
@@ -26,6 +27,7 @@ const ProfileCard = () => {
   const [selectedImageForCrop, setSelectedImageForCrop] = useState(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
   const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+  const [errorNotification, setErrorNotification] = useState("");
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedArea(croppedAreaPixels);
@@ -52,8 +54,22 @@ const ProfileCard = () => {
     }
   }, [croppedArea, selectedImageForCrop, selectedImageIndex, uploadedImages]);
 
-  const onDrop = async (acceptedFiles) => {
+  const onDrop = async (acceptedFiles, rejectedFiles) => {
+    if (rejectedFiles.length > 0) {
+      setErrorNotification(
+        "Error: File format not supported or file size exceeds 5MB."
+      );
+      setTimeout(() => setErrorNotification(""), 5000);
+      return;
+    }
+
     const file = acceptedFiles[0];
+    if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+      setErrorNotification("Error: File size exceeds 5MB.");
+      setTimeout(() => setErrorNotification(""), 5000);
+      return;
+    }
+
     const reader = new FileReader();
 
     await new Promise((resolve) => {
@@ -75,6 +91,7 @@ const ProfileCard = () => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: "image/*",
+    maxSize: MAX_FILE_SIZE_MB * 1024 * 1024,
   });
 
   const handleDeleteImage = (index) => {
@@ -98,7 +115,10 @@ const ProfileCard = () => {
 
   return (
     <div className="profile">
-      {showSuccessNotification && <Notification />}
+      {showSuccessNotification && (
+        <Notification message="Profile image updated successfully!" />
+      )}
+      {errorNotification && <Notification message={errorNotification} />}
       <div className="card">
         <div className="header">
           <ProfileImage
